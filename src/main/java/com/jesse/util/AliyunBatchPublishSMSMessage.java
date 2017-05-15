@@ -10,7 +10,7 @@ import com.aliyun.mns.model.RawTopicMessage;
 import com.aliyun.mns.model.TopicMessage;
 
 public class AliyunBatchPublishSMSMessage {
-	public static void sendMessage(String templateCode, String product, String phone) {
+	public static void sendMessage(String templateCode, String code, String product, String phone) {
 		/**
 		 * Step 1. 获取主题引用
 		 */
@@ -36,7 +36,7 @@ public class AliyunBatchPublishSMSMessage {
 		batchSmsAttributes.setTemplateCode(templateCode);
 		// 3.3 设置发送短信所使用的模板中参数对应的值（在短信模板中定义的，没有可以不用设置）
 		BatchSmsAttributes.SmsReceiverParams smsReceiverParams = new BatchSmsAttributes.SmsReceiverParams();
-		smsReceiverParams.setParam("code", RandomNumberUtil.getSixNumber());
+		smsReceiverParams.setParam("code", code);
 		smsReceiverParams.setParam("product", product);
 		// 3.4 增加接收短信的号码
 		batchSmsAttributes.addSmsReceiver(phone, smsReceiverParams);
