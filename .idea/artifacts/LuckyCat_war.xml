@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="LuckyCat:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="jesse-erp.war">
+      <element id="artifact" artifact-name="LuckyCat:war exploded" />
+    </root>
+  </artifact>
+</component>
