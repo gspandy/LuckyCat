@@ -46,11 +46,11 @@
 					<i class="fa fa-bars"></i>
 				</a> <a href="index.shtml#" class="navbar-brand"
 					data-toggle="fullscreen"><img
-					src="${ctx}/notebook/notebook_files/logo.png" class="m-r-sm">Notebook</a>
+					src="${ctx}/notebook/notebook_files/logo.png" class="m-r-sm">Romaway</a>
 				<a class="btn btn-link visible-xs" data-toggle="dropdown"
 					data-target=".nav-user"> <i class="fa fa-cog"></i>
 				</a>
-			</div>
+			</div><!--  
 			<ul class="nav navbar-nav hidden-xs">
 				<li class="dropdown"><a href="index.html#"
 					class="dropdown-toggle dker" data-toggle="dropdown"> <i
@@ -97,9 +97,9 @@
 							class="fa fa-long-arrow-up"></i></a>
 					</div>
 				</li>
-			</ul>
+			</ul>-->
 			<ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user">
-				<li class="hidden-xs"><a href="index.html#"
+				<!--<li class="hidden-xs"><a href="index.html#"
 					class="dropdown-toggle dk" data-toggle="dropdown"> <i
 						class="fa fa-bell"></i> <span
 						class="badge badge-sm up bg-danger m-l-n-sm count"
@@ -140,7 +140,7 @@
 									notifications</a>
 							</footer>
 						</section>
-					</section></li>
+					</section></li>  
 				<li class="dropdown hidden-xs"><a href="index.html#"
 					class="dropdown-toggle dker" data-toggle="dropdown"><i
 						class="fa fa-fw fa-search"></i></a>
@@ -159,23 +159,23 @@
 								</div>
 							</form>
 						</section>
-					</section></li>
+					</section></li>-->
 				<li class="dropdown"><a href="index.html#"
 					class="dropdown-toggle" data-toggle="dropdown"> <span
 						class="thumb-sm avatar pull-left"> <img
 							src="${ctx}/notebook/notebook_files/avatar.jpg">
 					</span> ${userFormMap.accountName} <b class="caret"></b>
 				</a>
-					<ul class="dropdown-menu animated fadeInRight">
+					<ul class="dropdown-menu animated fadeInRight" style="text-align:center">
 						<span class="arrow top"></span>
-						<li><a href="index.shtml#">Settings</a></li>
-						<li><a href="#" onclick="javascript:updatePasswordLayer();">密码修改</a></li>
-						<li><a href="index.html#"> <span
+						<!--  <li><a href="index.shtml#">Settings</a></li>-->
+						<li><a href="#" onclick="javascript:updatePasswordLayer();">修改密码</a></li>
+						<!--<li><a href="index.html#"> <span
 								class="badge bg-danger pull-right">3</span> Notifications
 						</a></li>
-						<li><a href="docs.html">Help</a></li>
+						<li><a href="docs.html">Help</a></li>-->
 						<li class="divider"></li>
-						<li><a href="logout.shtml">Logout</a></li>
+						<li><a href="logout.shtml">退出登录</a></li>
 					</ul></li>
 			</ul>
 		</header>

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
+import com.jesse.util.Common;
 
 /**
  * 基础Controller
@@ -49,7 +49,7 @@ public class AppAct {
 		if(code!=null){
 			this.result.put("code", code);
 		}
-		if(!StringUtils.isEmpty(message)){
+		if(!Common.isEmpty(message)){
 			this.result.put("message", message);
 		}
 		if(mapData!=null){
