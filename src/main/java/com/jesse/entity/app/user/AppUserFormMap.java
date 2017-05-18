@@ -6,11 +6,9 @@ import com.jesse.util.FormMap;
 
 
 /**
- * 
- * @ClassName:  AppUserFormMap   
- * @Description:app用户实体表
- * @author: lizhie
- * @date:   2017年5月17日 下午1:25:55
+ * app用户实体表
+ * @author lizhie
+ * @date 2017年5月17日
  */
 @TableSeg(tableName = "app_user", id="id")
 public class AppUserFormMap extends FormMap<String,Object>{

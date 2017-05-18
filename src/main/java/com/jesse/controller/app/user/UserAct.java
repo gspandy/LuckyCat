@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.jesse.controller.app.user;
 
 import java.util.Date;
@@ -23,14 +26,14 @@ import com.jesse.mapper.app.user.AppUserMapper;
 import com.jesse.mapper.app.user.SmsLogInfoMapper;
 import com.jesse.util.Common;
 import com.jesse.util.DateUtils;
+import com.jesse.util.JsonUtils;
 import com.jesse.util.RandomNumberUtil;
 
+
 /**
- * 
- * @ClassName: UserAct
- * @Description:app用户接口控制器
- * @author: lizhie
- * @date: 2017年5月15日 下午2:30:18
+ * app用户接口控制器
+ * @author lizhie
+ * @date 2017年5月17日
  */
 @RestController
 @RequestMapping("/app/")
@@ -53,15 +56,12 @@ public class UserAct extends AppAct{
 	}
 			
 	/**
-	 * @throws Exception 
-	 * 
-	 * @Title: getRegisterVerifCode   
-	 * @Description: 获取注册验证码 
-	 * @author: lizhie  
-	 * @param: @param phone
-	 * @param: @return      
-	 * @return: ResponseEntity<Map<String,Object>>      
-	 * @throws
+	 * 获取注册验证码 
+	 * @author lizhie
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 * @date 2017年5月17日
 	 */
 	@RequestMapping(value = "/getRegisterVerifCode", produces = { "application/json;charset=UTF-8" })
 	public ResponseEntity<Map<String, Object>> getRegisterVerifCode(HttpServletRequest request) throws Exception {
@@ -89,6 +89,7 @@ public class UserAct extends AppAct{
 			saveOrUpdateUserInfo(phone, ipAddress);
 			setResult(1,"发送验证码成功！", mapData, null);
 		} catch (ServiceException se) {
+			sendFlag = 0;
 			errorMsg = se.getErrorCode() + se.getRequestId();
 			mapData.put("errorMsg",errorMsg);
 			setResult(-1, "发送验证码失败！", mapData, null);
@@ -108,20 +109,44 @@ public class UserAct extends AppAct{
 		smsLogInfoMapper.addEntity(smsLogInfo);
 		return new ResponseEntity<Map<String,Object>>(getResult(), HttpStatus.OK); 
 	}
+	
+	/**
+	 * 用户登录
+	 * @author lizhie
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 * @date 2017年5月18日
+	 */
+	@RequestMapping(value = "/login", produces = { "application/json;charset=UTF-8" })
+	public ResponseEntity<Map<String, Object>> login(HttpServletRequest request) {
+
+		String phone = request.getParameter("phone");
+		String ipAddress = Common.getIpAddr(request);
+		mapData.put("phone", phone);
+		try {
+			AppUserFormMap user = saveOrUpdateUserInfo(phone, ipAddress);
+			String json = JsonUtils.beanToJson(user);
+			mapData.put("userInfo", json);
+			setResult(1, "登录成功！", mapData, null);
+		} catch (Exception e) {
+			setResult(-1, "登录失败！", mapData, null);
+			logger.error(e.getMessage());
+		}
+
+		return new ResponseEntity<Map<String, Object>>(getResult(), HttpStatus.OK);
+	}
 
 	/**
-	 * @param ipAddress 
-	 * 
-	 * @Title: saveOrUpdateUserInfo   
-	 * @Description: 保存或者更新app用户信息
-	 * @author: lizhie  
-	 * @param: @param phone
-	 * @param: @throws Exception      
-	 * @return: void      
-	 * @throws
+	 * 保存或者更新app用户信息
+	 * @author lizhie
+	 * @param phone 手机号码
+	 * @param ipAddress IP地址
+	 * @return
+	 * @throws Exception
+	 * @date 2017年5月18日
 	 */
-	private void saveOrUpdateUserInfo(String phone, String ipAddress)
-			throws Exception {
+	private AppUserFormMap saveOrUpdateUserInfo(String phone, String ipAddress) throws Exception {
 		AppUserFormMap newUser = new AppUserFormMap();
 		newUser.set("phone", phone);
 		List<AppUserFormMap> list = userMapper.findUser(newUser);
@@ -135,12 +160,31 @@ public class UserAct extends AppAct{
 			user.set("updated_at", date);
 			user.set("last_login_ip", ipAddress);
 			userMapper.editEntity(user);
-		} else {
-			newUser.set("login_times", 1);
-			newUser.set("last_login_time", date);
-			newUser.set("last_login_ip", ipAddress);
-			newUser.set("created_at", date);
-			userMapper.addEntity(newUser);
+			return user;
 		}
+		
+		newUser.set("login_times", 1);
+		newUser.set("last_login_time", date);
+		newUser.set("last_login_ip", ipAddress);
+		newUser.set("created_at", date);
+		userMapper.addEntity(newUser);
+		return newUser;
 	}
+	
+	/**
+	 * 微信登录验证
+	 * @author lizhie
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 * @date 2017年5月18日
+	 */
+	@RequestMapping(value = "/weixinAuth", produces = { "application/json;charset=UTF-8" })
+	public ResponseEntity<Map<String, Object>> weixinAuth(HttpServletRequest request) throws Exception {
+
+//		String code = request.getParameter("code");
+
+		return new ResponseEntity<Map<String, Object>>(getResult(), HttpStatus.OK);
+	}
+	
 }
