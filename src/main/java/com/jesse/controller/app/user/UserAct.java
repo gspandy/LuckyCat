@@ -211,11 +211,11 @@ public class UserAct extends AppAct{
         
         //接口调用凭证
         String accessToken = jsonObj.optString("access_token");
-        //access_token接口调用凭证超时时间，单位（秒）
+        //access_token接口调用凭证超时时间，单位(秒)
         String expiresIn = jsonObj.optString("expires_in");
         //用户刷新access_token
         String refreshToken = jsonObj.optString("refresh_token");
-        //用户授权的作用域，使用逗号（,）分隔
+        //用户授权的作用域，使用逗号(,)分隔
         String scope = jsonObj.optString("scope");
           
         //获取用户信息  
