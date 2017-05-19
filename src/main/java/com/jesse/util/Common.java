@@ -53,6 +53,26 @@ public class Common {
 	// 默认除法运算精度
 	private static final int DEF_DIV_SCALE = 10;
 	
+	/**
+	 * 微信获取授权access_token链接
+	 */
+	public static final String WX_AUTH_LOGIN_URL = "https://api.weixin.qq.com/sns/oauth2/access_token";
+	
+	/**
+	 * 微信获取用户信息链接
+	 */
+	public static final String WX_USERINFO_URL = "https://api.weixin.qq.com/sns/userinfo";
+	
+	/**
+	 * 微信AppId
+	 */
+    public static final String WX_APP_ID = "";
+    
+    /**
+     * 微信AppSecret
+     */
+    public static final String WX_APP_KEY = "";
+	
 	
 
 	/**
@@ -575,6 +595,7 @@ public class Common {
 		return pattern.matcher(str).matches();
 	}
 
+	@SuppressWarnings("unchecked")
 	public static FormMap<String, Object> toHashMap(Object parameterObject) {
 		FormMap<String, Object> froMmap = (FormMap<String, Object>) parameterObject;
 		try {
