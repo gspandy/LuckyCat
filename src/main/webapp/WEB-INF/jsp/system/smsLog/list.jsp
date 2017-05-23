@@ -23,7 +23,6 @@
             <kendo:comboBox name="smsLogId"  filter="contains" placeholder="选择电话号码..." index="0" suggest="true" dataTextField="phone" dataValueField="id" style="width: 80%;">
                 <kendo:dataSource data="${smsLogList}"></kendo:dataSource>
             </kendo:comboBox>
-            <input class="input-medium ui-autocomplete-input" id="accountName"  name="logFormMap.accountName">
         </div>
         <a href="javascript:void(0)" class="btn btn-default" id="search">查询</a>
     </form>
