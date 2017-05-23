@@ -35,7 +35,7 @@
 	<select id="findSmsLogInfoList" resultType="com.jesse.entity.app.user.SmsLogInfoFormMap">
 		SELECT
 			id,
-			phone,
+			phone
 		from sms_log_info
 	</select>
 
