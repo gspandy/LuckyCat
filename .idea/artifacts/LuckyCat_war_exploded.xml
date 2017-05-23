@@ -71,6 +71,7 @@
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.4.1" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.4" />
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.6.2" />
+          <element id="library" level="project" name="Maven: com.kendoui:kendo-taglib:2017.1.223" />
         </element>
       </element>
       <element id="directory" name="META-INF">
