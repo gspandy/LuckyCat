@@ -46,10 +46,6 @@
         </kendo:grid-columns>
         <kendo:dataSource pageSize="20" serverPaging="true" serverFiltering="true" serverSorting="true">
             <kendo:dataSource-schema data="content" total="totalElements">
-                <kendo:dataSource-schema-model>
-                    <kendo:dataSource-schema-model-fields>
-                    </kendo:dataSource-schema-model-fields>
-                </kendo:dataSource-schema-model>
             </kendo:dataSource-schema>
             <kendo:dataSource-transport>
                 <kendo:dataSource-transport-read url="smsLog/findByPage.shtml" type="POST" contentType="application/json"/>
