@@ -3,10 +3,10 @@ package com.jesse.controller.system;
 import com.jesse.controller.index.BaseController;
 import com.jesse.entity.app.user.SmsLogInfoFormMap;
 import com.jesse.mapper.app.user.SmsLogInfoMapper;
-import com.jesse.plugin.PageView;
 import com.jesse.util.Common;
 import com.jesse.util.page.DataSourceRequest;
 import com.jesse.util.page.MybatisPage;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,11 +28,13 @@ public class SmsLogController extends BaseController {
 	@Inject
 	private SmsLogInfoMapper smsLogInfoMapper;
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping("list")
 	public String listUI(Model model) throws Exception {
 		model.addAttribute("smsLogList",smsLogInfoMapper.findSmsLogInfoList(params));
 		return Common.BACKGROUND_PATH + "/system/smsLog/list";
 	}
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@ResponseBody
 	@RequestMapping(value="findByPage",method = RequestMethod.POST)
 	public MybatisPage findByPage(@RequestBody DataSourceRequest dataSourceRequest) throws Exception {
