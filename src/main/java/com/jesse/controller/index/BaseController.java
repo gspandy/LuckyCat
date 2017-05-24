@@ -56,14 +56,33 @@ public class BaseController {
 		pageView.setOrderby(orderby);
 		return pageView;
 	}
-	
+	public PageView getPageView1(int pageNow,int pageSize,String orderby) {
+		if (pageNow==0) {
+			pageView = new PageView(1);
+		} else {
+			pageView = new PageView(pageNow);
+		}
+		if (pageSize==0) {
+			pageSize = 10;
+		}
+		pageView.setPageSize(pageSize);
+		pageView.setOrderby(orderby);
+		return pageView;
+	}
+
 	public <T> T toFormMap(T t,String pageNow,String pageSize,String orderby){
 		@SuppressWarnings("unchecked")
 		FormMap<String, Object> formMap = (FormMap<String, Object>) t;
 		formMap.put("paging", getPageView(pageNow, pageSize,orderby));
 		return t;
 	}
-	
+	public <T> T toFormMap1(T t,int pageNow,int pageSize,String orderby){
+		@SuppressWarnings("unchecked")
+		FormMap<String, Object> formMap = (FormMap<String, Object>) t;
+		formMap.put("paging", getPageView1(pageNow, pageSize,orderby));
+		return t;
+	}
+
 	/**
 	 * 获取返回某一页面的按扭组,
 	 * <br/>
