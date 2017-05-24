@@ -14,28 +14,28 @@ CREATE TABLE `ly_res_user` (
 -- ----------------------------
 -- Records of ly_res_user
 -- ----------------------------
-INSERT INTO `ly_res_user` VALUES ('1', '3');
-INSERT INTO `ly_res_user` VALUES ('2', '3');
-INSERT INTO `ly_res_user` VALUES ('3', '3');
-INSERT INTO `ly_res_user` VALUES ('4', '3');
-INSERT INTO `ly_res_user` VALUES ('5', '3');
-INSERT INTO `ly_res_user` VALUES ('6', '3');
-INSERT INTO `ly_res_user` VALUES ('7', '3');
-INSERT INTO `ly_res_user` VALUES ('8', '3');
-INSERT INTO `ly_res_user` VALUES ('9', '3');
-INSERT INTO `ly_res_user` VALUES ('10', '3');
-INSERT INTO `ly_res_user` VALUES ('11', '3');
-INSERT INTO `ly_res_user` VALUES ('25', '3');
-INSERT INTO `ly_res_user` VALUES ('26', '3');
-INSERT INTO `ly_res_user` VALUES ('27', '3');
-INSERT INTO `ly_res_user` VALUES ('28', '3');
-INSERT INTO `ly_res_user` VALUES ('29', '3');
-INSERT INTO `ly_res_user` VALUES ('30', '3');
-INSERT INTO `ly_res_user` VALUES ('31', '3');
-INSERT INTO `ly_res_user` VALUES ('32', '3');
-INSERT INTO `ly_res_user` VALUES ('33', '3');
-INSERT INTO `ly_res_user` VALUES ('34', '3');
-INSERT INTO `ly_res_user` VALUES ('35', '3');
+INSERT INTO `ly_res_user` VALUES ('1', '1');
+INSERT INTO `ly_res_user` VALUES ('2', '1');
+INSERT INTO `ly_res_user` VALUES ('3', '1');
+INSERT INTO `ly_res_user` VALUES ('4', '1');
+INSERT INTO `ly_res_user` VALUES ('5', '1');
+INSERT INTO `ly_res_user` VALUES ('6', '1');
+INSERT INTO `ly_res_user` VALUES ('7', '1');
+INSERT INTO `ly_res_user` VALUES ('8', '1');
+INSERT INTO `ly_res_user` VALUES ('9', '1');
+INSERT INTO `ly_res_user` VALUES ('10', '1');
+INSERT INTO `ly_res_user` VALUES ('11', '1');
+INSERT INTO `ly_res_user` VALUES ('25', '1');
+INSERT INTO `ly_res_user` VALUES ('26', '1');
+INSERT INTO `ly_res_user` VALUES ('27', '1');
+INSERT INTO `ly_res_user` VALUES ('28', '1');
+INSERT INTO `ly_res_user` VALUES ('29', '1');
+INSERT INTO `ly_res_user` VALUES ('30', '1');
+INSERT INTO `ly_res_user` VALUES ('31', '1');
+INSERT INTO `ly_res_user` VALUES ('32', '1');
+INSERT INTO `ly_res_user` VALUES ('33', '1');
+INSERT INTO `ly_res_user` VALUES ('34', '1');
+INSERT INTO `ly_res_user` VALUES ('35', '1');
 
 -- ----------------------------
 -- Table structure for ly_resources
@@ -53,7 +53,7 @@ CREATE TABLE `ly_resources` (
   `ishide` int(3) DEFAULT '0',
   `description` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ly_resources
@@ -92,7 +92,7 @@ CREATE TABLE `ly_role` (
   `roleKey` varchar(50) DEFAULT NULL,
   `description` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ly_role
@@ -116,14 +116,14 @@ CREATE TABLE `ly_user` (
   `createTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deletestatus` int(1) DEFAULT '0' COMMENT '逻辑删除状态0:存在1:删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ly_user
 -- ----------------------------
-INSERT INTO `ly_user` VALUES ('1', '蓝缘', 'simple', '78e21a6eb88529eab722793a448ed394', '4157c3feef4a6ed91b2c28cf4392f2d1', '0', '1', '2015-05-17 22:23:15', '0');
-INSERT INTO `ly_user` VALUES ('2', '超级管理员', 'ROOT', '78e21a6eb88529eab722793a448ed394', '4157c3feef4a6ed91b2c28cf4392f2d1', '0000', '1', '2015-05-23 17:39:37', '0');
-INSERT INTO `ly_user` VALUES ('3', '管理员', 'admin', '78e21a6eb88529eab722793a448ed394', '4157c3feef4a6ed91b2c28cf4392f2d1', '3434', '1', '2015-05-23 17:39:39', '0');
+INSERT INTO `ly_user` VALUES ('1', '超级管理员', 'admin', '78e21a6eb88529eab722793a448ed394', '4157c3feef4a6ed91b2c28cf4392f2d1', '0000', '1', '2015-05-23 17:39:37', '0');
+INSERT INTO `ly_user` VALUES ('2', '管理员', 'common', '78e21a6eb88529eab722793a448ed394', '4157c3feef4a6ed91b2c28cf4392f2d1', '3434', '1', '2015-05-23 17:39:39', '0');
+INSERT INTO `ly_user` VALUES ('3', '杰西', 'jesse', '78e21a6eb88529eab722793a448ed394', '4157c3feef4a6ed91b2c28cf4392f2d1', 'dwe', '1', '2015-05-17 22:23:15', '0');
 
 -- ----------------------------
 -- Table structure for ly_user_role
@@ -138,6 +138,6 @@ CREATE TABLE `ly_user_role` (
 -- ----------------------------
 -- Records of ly_user_role
 -- ----------------------------
-INSERT INTO `ly_user_role` VALUES ('1', '2');
-INSERT INTO `ly_user_role` VALUES ('2', '3');
-INSERT INTO `ly_user_role` VALUES ('3', '1');
+INSERT INTO `ly_user_role` VALUES ('1', '3');
+INSERT INTO `ly_user_role` VALUES ('2', '1');
+INSERT INTO `ly_user_role` VALUES ('3', '2');
