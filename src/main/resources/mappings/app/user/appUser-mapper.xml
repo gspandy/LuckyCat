@@ -24,6 +24,15 @@
 		and phone = '${phone}'
 		</if>
 	</select>
-
 	
+	<select id="findUserPage" resultType="com.jesse.entity.app.user.AppUserFormMap">
+		select * from app_user
+		where 1 = 1
+		<if test="phone != null and phone != ''">
+		and phone = '${phone}'
+		</if>
+		<if test="column != null">
+          order by ${column} ${sort}
+        </if>
+	</select>	
 </mapper>
