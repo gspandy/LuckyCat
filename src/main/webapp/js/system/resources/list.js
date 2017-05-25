@@ -33,7 +33,7 @@ $(function() {
 			}
 		}, {
 			colkey : "description",
-			width : "100px",
+			width : "auto",
 			name : "描述"
 		} ],
 		jsonUrl : rootPath + '/resources/treelists.shtml',

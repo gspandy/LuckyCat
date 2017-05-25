@@ -18,7 +18,7 @@
 	</sql>
 
 	<select id="findSmsLogInfoPage" resultType="com.jesse.entity.app.user.SmsLogInfoFormMap">
-		SELECT
+		select
 		<include refid="selectId" />
 		from sms_log_info
 		where 1 = 1
@@ -33,10 +33,10 @@
         </if>
 	</select>
 	<select id="findSmsLogInfoList" resultType="com.jesse.entity.app.user.SmsLogInfoFormMap">
-		SELECT
+		select
 			id,
 			phone
-		from sms_log_info
+		from sms_log_info group by phone
 	</select>
 
 	

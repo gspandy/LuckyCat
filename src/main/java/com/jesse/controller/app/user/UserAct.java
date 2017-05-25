@@ -3,9 +3,12 @@ package com.jesse.controller.app.user;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+
 import net.sf.json.JSONObject;
+
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.aliyun.mns.common.ServiceException;
 import com.jesse.controller.app.AppAct;
 import com.jesse.entity.app.user.AppUserFormMap;
@@ -83,7 +87,7 @@ public class UserAct extends AppAct{
 			mapData.put("verifyCode",code);
 			mapData.put("phone",phone);
 			//保存或更新app用户信息
-			saveOrUpdateUserInfo(phone, ipAddress);
+			saveOrUpdateUserInfo(request);
 			setResult(1,"发送验证码成功！", mapData, null);
 		} catch (ServiceException se) {
 			sendFlag = 0;
@@ -118,10 +122,8 @@ public class UserAct extends AppAct{
 	@RequestMapping(value = "/login", produces = { "application/json;charset=UTF-8" })
 	public ResponseEntity<Map<String, Object>> login(HttpServletRequest request) {
 		mapData.clear();
-		String phone = request.getParameter("phone");
-		String ipAddress = Common.getIpAddr(request);
 		try {
-			AppUserFormMap user = saveOrUpdateUserInfo(phone, ipAddress);
+			AppUserFormMap user = saveOrUpdateUserInfo(request);
 			String json = JsonUtils.beanToJson(user);
 			mapData.put("userInfo", json);
 			setResult(1, "登录成功！", mapData, null);
@@ -142,7 +144,11 @@ public class UserAct extends AppAct{
 	 * @throws Exception
 	 * @date 2017年5月18日
 	 */
-	private AppUserFormMap saveOrUpdateUserInfo(String phone, String ipAddress) throws Exception {
+	private AppUserFormMap saveOrUpdateUserInfo(HttpServletRequest request) throws Exception {
+		String phone = request.getParameter("phone");
+		String deviceId = request.getParameter("deviceId");
+		String isWeixinLogin = request.getParameter("isWeixinLogin");
+		String ipAddress = Common.getIpAddr(request);
 		AppUserFormMap newUser = new AppUserFormMap();
 		newUser.set("phone", phone);
 		List<AppUserFormMap> list = userMapper.findUser(newUser);
@@ -155,6 +161,8 @@ public class UserAct extends AppAct{
 			user.set("last_login_time", user.get("updated_at"));
 			user.set("updated_at", date);
 			user.set("last_login_ip", ipAddress);
+			user.set("device_id", deviceId);
+			user = isWeixinLogin.equals("yes") ? saveOrUpdateWeixinInfo(user, request, date) : user;
 			userMapper.editEntity(user);
 			return user;
 		}
@@ -163,10 +171,43 @@ public class UserAct extends AppAct{
 		newUser.set("last_login_time", date);
 		newUser.set("last_login_ip", ipAddress);
 		newUser.set("created_at", date);
+		newUser.set("device_id", deviceId);
+		newUser = isWeixinLogin.equals("yes") ? saveOrUpdateWeixinInfo(newUser, request, date) : newUser;
 		userMapper.addEntity(newUser);
 		return newUser;
 	}
 	
+	/**
+	 * 保存或更新用户微信相关信息
+	 * @author lizhie
+	 * @param user
+	 * @param request
+	 * @param date 
+	 * @return
+	 * @date 2017年5月23日
+	 */
+	private AppUserFormMap saveOrUpdateWeixinInfo(AppUserFormMap user, HttpServletRequest request, String date) {
+		//授权用户唯一标识
+        String nickname = request.getParameter("nickname");
+        String headImgUrl = request.getParameter("headImgUrl");
+        String openId = request.getParameter("openid");
+        String unionid = request.getParameter("unionid");
+        String accessToken = request.getParameter("accessToken");
+        String subscribe = request.getParameter("subscribe");
+        String lastSubscribeAt = request.getParameter("lastSubscribeAt");
+        String weixinRemark = request.getParameter("weixinRemark");
+        user.set("weixin_nickname", nickname);
+        user.set("weixin_headImgUrl", headImgUrl);
+        user.set("weixin_openid", openId);
+        user.set("weixin_unionid", unionid);
+        user.set("weixin_access_token", accessToken);
+        user.set("weixin_subscribed", subscribe);
+        user.set("weixin_subscribed_at", lastSubscribeAt);
+        user.set("weixin_remark", weixinRemark);
+        user.set("last_weixin_visited_at", date);
+		return user;
+	}
+
 	/**
 	 * 微信登录验证
 	 * @author lizhie
@@ -233,7 +274,12 @@ public class UserAct extends AppAct{
         String headImgUrl = userInfoJson.optString("headimgurl");
         //只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段
         String unionid = userInfoJson.optString("unionid");
+        //用户关注时间，为时间戳。若曾多次关注，则取最后关注时间
+        String lastSubscribeAt = userInfoJson.optString("subscribe_time");
+        //公众号运营者对粉丝的备注
+        String weixinRemark = userInfoJson.optString("remark");
         
+        mapData.put("isWeixinLogin", "yes");
         mapData.put("errcode", errcode);
         mapData.put("openId", openId);
         mapData.put("accessToken", accessToken);
@@ -241,10 +287,12 @@ public class UserAct extends AppAct{
         mapData.put("refreshToken", refreshToken);
         mapData.put("scope", scope);
         mapData.put("subscribe", subscribe);
+        mapData.put("lastSubscribeAt", lastSubscribeAt);
         mapData.put("nickname", nickname);
         mapData.put("sex", sex);
         mapData.put("headImgUrl", headImgUrl);
         mapData.put("unionid", unionid);
+        mapData.put("weixinRemark", weixinRemark);
 
         setResult(1, "微信登录验证成功！", mapData, null);
 		return new ResponseEntity<Map<String, Object>>(getResult(), HttpStatus.OK);
