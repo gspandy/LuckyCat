@@ -4,17 +4,16 @@ import com.jesse.controller.index.BaseController;
 import com.jesse.entity.app.user.SmsLogInfoFormMap;
 import com.jesse.mapper.app.user.SmsLogInfoMapper;
 import com.jesse.util.Common;
-import com.jesse.util.page.DataSourceRequest;
-import com.jesse.util.page.MybatisPage;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
+import java.util.Map;
 
 /**
  * 
@@ -37,13 +36,12 @@ public class SmsLogController extends BaseController {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@ResponseBody
 	@RequestMapping(value="findByPage",method = RequestMethod.POST)
-	public MybatisPage findByPage(@RequestBody DataSourceRequest dataSourceRequest) throws Exception {
+	public ResponseEntity<Map<String, Object>> findByPage(String page,String rows) throws Exception {
 		SmsLogInfoFormMap formMap = getFormMap(SmsLogInfoFormMap.class);
-		formMap=toFormMap1(formMap, dataSourceRequest.getPage(), dataSourceRequest.getPageSize(),formMap.getStr("orderby"));
+		formMap=toFormMap(formMap, page,rows,formMap.getStr("orderby"));
 		pageView.setRecords(smsLogInfoMapper.findByPage(formMap));
-		MybatisPage page=new MybatisPage();
-		page.setContent(pageView.getRecords());
-		page.setTotalElements(pageView.getRowCount());
-		return page;
+		map.put("rows",pageView.getRecords());
+		map.put("total",pageView.getRowCount());
+		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 	}
 }
