@@ -1,5 +1,16 @@
 package com.jesse.plugin;
 
+import com.jesse.annotation.TableSeg;
+import com.jesse.util.FormMap;
+import org.apache.ibatis.executor.statement.BaseStatementHandler;
+import org.apache.ibatis.executor.statement.RoutingStatementHandler;
+import org.apache.ibatis.executor.statement.StatementHandler;
+import org.apache.ibatis.mapping.BoundSql;
+import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.plugin.*;
+import org.apache.log4j.Logger;
+
+import javax.xml.bind.PropertyException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,29 +18,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.Properties;
 import java.util.Set;
-
-import javax.xml.bind.PropertyException;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.ibatis.executor.statement.BaseStatementHandler;
-import org.apache.ibatis.executor.statement.RoutingStatementHandler;
-import org.apache.ibatis.executor.statement.StatementHandler;
-import org.apache.ibatis.mapping.BoundSql;
-import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.plugin.Intercepts;
-import org.apache.ibatis.plugin.Invocation;
-import org.apache.ibatis.plugin.Plugin;
-import org.apache.ibatis.plugin.Signature;
-import org.apache.log4j.Logger;
-
-import com.jesse.annotation.TableSeg;
-import com.jesse.util.Common;
-import com.jesse.util.FormMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Mybatis的分页查询插件，通过拦截StatementHandler的prepare方法来实现。 
@@ -184,9 +176,8 @@ public class PagePlugin implements Interceptor {
 	 * oss_userinfo u where u.id=userId order by id desc) order by id desc 
 	 * 兼容以上子查询 //去除sql ..from 前面的字符。考虑 aafrom fromdd 等等情况
 	 */
-	public static String suffixStr(String toSql) {
+	public  String suffixStr(String toSql) {
 		toSql =getStringNoBlank(toSql);
-		if(StringUtils.isBlank(source_sql))
 		source_sql = toSql;
 		toSql=toSql.toLowerCase();
 		int sun = toSql.indexOf(" from ");
@@ -199,7 +190,7 @@ public class PagePlugin implements Interceptor {
 		}
 		return source_sql;
 	}
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		String sql="  select "+
 		 "	articleNo "+
 		 " from article left jion aefv where 1=(SELECT userName from ly_userinfo u where u.id=userId) "
@@ -215,8 +206,8 @@ public class PagePlugin implements Interceptor {
    *
    */  
 	static String str_sql = "";
-	static String source_sql = "";
-	private static String removeOrderBys(String sql) {
+	String source_sql = "";
+	private String removeOrderBys(String sql) {
 		sql =getStringNoBlank(sql);
 		int s = 0;
 		int e = 0;
