@@ -27,12 +27,11 @@ public class SmsLogController extends BaseController {
 	@Inject
 	private SmsLogInfoMapper smsLogInfoMapper;
 
-	@SuppressWarnings("unchecked")
 	@RequestMapping("list")
 	public String listUI(Model model) throws Exception {
 		return Common.BACKGROUND_PATH + "/system/smsLog/list";
 	}
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	
 	@ResponseBody
 	@RequestMapping(value="findByPage",method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> findByPage(String page,String rows) throws Exception {

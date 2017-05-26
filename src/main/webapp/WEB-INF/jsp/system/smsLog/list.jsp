@@ -2,21 +2,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="<%=request.getContextPath() %>"/>
-<!doctype html>
-<html class="lte-ie9" lang="en">
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="msapplication-tap-highlight" content="no"/>
-    <title>erp</title>
-    <link rel="stylesheet" type="text/css" href="${ctx}/easyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="${ctx}/easyui/themes/icon.css">
-    <script type="text/javascript" src="${ctx}/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="${ctx}/easyui/locale/easyui-lang-zh_CN.js"></script>
-</head>
-<body>
+
+<link rel="stylesheet" type="text/css" href="${ctx}/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/easyui/themes/icon.css">
+<script type="text/javascript" src="${ctx}/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${ctx}/easyui/locale/easyui-lang-zh_CN.js"></script>
+
 <div class="m-b-md">
     <form class="form-inline" role="form" id="searchForm" name="searchForm">
         <div class="form-group">
@@ -33,10 +24,11 @@
     </form>
     <table id="grid" class="easyui-datagrid" url="smsLog/findByPage.shtml" style="height: 800px;"
            idField="id" rownumbers="true" striped="true" fitColumns="true"
-           fit="true" pagination="true" singleSelect="true" toolbar="#toolbar">
+           fit="true" pagination="true" toolbar="#toolbar">
         <thead>
         <tr>
-            <th field="phone" width="200">电话</th>
+            <th field="id" checkbox="true" width="200"></th>
+            <th field="phone" width="200">手机号码</th>
             <th field="verify_code" width="100"> 验证码</th>
             <th field="ip_address" width="300">请求IP地址</th>
             <th field="ts" width="200"> 时间</th>
@@ -44,5 +36,4 @@
         </thead>
     </table>
 </div>
-</body>
-</html>
+
