@@ -21,20 +21,25 @@
     <form class="form-inline" role="form" id="searchForm" name="searchForm">
         <div class="form-group">
             <label class="control-label">
-                <span class="h4 font-thin v-middle">账号:</span>
+                <span class="h4 font-thin v-middle">电话号码:</span>
             </label>
+            <input class="input-medium ui-autocomplete-input" id="phone" name="userFormMap.phone">
+            <label class="control-label">
+                <span class="h4 font-thin v-middle">验证码:</span>
+            </label>
+            <input class="input-medium ui-autocomplete-input" id="verify_code" name="userFormMap.verify_code">
         </div>
         <a href="javascript:void(0)" class="btn btn-default" id="search">查询</a>
     </form>
-    <table id="grid" class="easyui-datagrid" url="smsLog/findByPage.shtml"
+    <table id="grid" class="easyui-datagrid" url="smsLog/findByPage.shtml" style="height: 800px;"
            idField="id" rownumbers="true" striped="true" fitColumns="true"
            fit="true" pagination="true" singleSelect="true" toolbar="#toolbar">
         <thead>
         <tr>
             <th field="phone" width="200">电话</th>
-            <th field="verify_code" width="400"> 验证码</th>
-            <th field="ip_address" width="60">请求IP地址</th>
-            <th field="ts" width="60"> 时间</th>
+            <th field="verify_code" width="100"> 验证码</th>
+            <th field="ip_address" width="300">请求IP地址</th>
+            <th field="ts" width="200"> 时间</th>
         </tr>
         </thead>
     </table>
