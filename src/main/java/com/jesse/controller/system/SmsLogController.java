@@ -30,7 +30,6 @@ public class SmsLogController extends BaseController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("list")
 	public String listUI(Model model) throws Exception {
-		model.addAttribute("smsLogList",smsLogInfoMapper.findSmsLogInfoList(params));
 		return Common.BACKGROUND_PATH + "/system/smsLog/list";
 	}
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -39,7 +38,7 @@ public class SmsLogController extends BaseController {
 	public ResponseEntity<Map<String, Object>> findByPage(String page,String rows) throws Exception {
 		SmsLogInfoFormMap formMap = getFormMap(SmsLogInfoFormMap.class);
 		formMap=toFormMap(formMap, page,rows,formMap.getStr("orderby"));
-		pageView.setRecords(smsLogInfoMapper.findByPage(formMap));
+		pageView.setRecords(smsLogInfoMapper.findSmsLogInfoPage(formMap));
 		map.put("rows",pageView.getRecords());
 		map.put("total",pageView.getRowCount());
 		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
