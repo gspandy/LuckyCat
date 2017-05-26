@@ -7,6 +7,7 @@ $(function() {
 		l_column : [ {
 			colkey : "id",
 			name : "id",
+			hide : true
 		}, {
 			colkey : "userName",
 			name : "用户名",
@@ -22,7 +23,13 @@ $(function() {
 			colkey : "locked",
 			name : "账号状态",
 			width : '90px',
-			isSort:true
+			renderData : function(rowindex, data, rowdata, column) {
+				if(data=="0"){
+					return "无效";
+				}else if(data=="1"){
+					return "有效";
+				}
+			}
 		}, {
 			colkey : "description",
 			name : "描述"
@@ -32,11 +39,6 @@ $(function() {
 			isSort:true,
 			renderData : function(rowindex,data, rowdata, column) {
 				return new Date(data).format("yyyy-MM-dd hh:mm:ss");
-			}
-		}, {
-			name : "操作",
-			renderData : function( rowindex ,data, rowdata, colkeyn) {
-				return "测试渲染函数";
 			}
 		} ],
 		jsonUrl : rootPath + '/user/findByPage.shtml',

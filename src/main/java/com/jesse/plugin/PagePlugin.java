@@ -2,6 +2,7 @@ package com.jesse.plugin;
 
 import com.jesse.annotation.TableSeg;
 import com.jesse.util.FormMap;
+
 import org.apache.ibatis.executor.statement.BaseStatementHandler;
 import org.apache.ibatis.executor.statement.RoutingStatementHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
@@ -11,6 +12,7 @@ import org.apache.ibatis.plugin.*;
 import org.apache.log4j.Logger;
 
 import javax.xml.bind.PropertyException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -131,7 +133,8 @@ public class PagePlugin implements Interceptor {
      * @param page
 	 * @throws SQLException 
      */
-    private void setPageParameter(String sql, Connection connection, MappedStatement mappedStatement,
+    @SuppressWarnings("resource")
+	private void setPageParameter(String sql, Connection connection, MappedStatement mappedStatement,
             BoundSql boundSql,Object parameterObject, PageView pageView) throws SQLException {
         // 记录总记录数
     	PreparedStatement countStmt = null;
@@ -309,7 +312,6 @@ public class PagePlugin implements Interceptor {
 		return Plugin.wrap(target, this);
 	}
 
-	@SuppressWarnings("restriction")
 	public void setProperties(Properties p) {
 		dialect = p.getProperty("dialect");
 		if (isEmpty(dialect)) {

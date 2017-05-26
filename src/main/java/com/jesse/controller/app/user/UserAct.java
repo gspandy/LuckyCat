@@ -36,7 +36,7 @@ import com.jesse.util.RandomNumberUtil;
  * @date 2017年5月17日
  */
 @RestController
-@RequestMapping("/app/")
+@RequestMapping("/app/user")
 public class UserAct extends AppAct{
 	
 	private  static  final Logger logger = LoggerFactory.getLogger(UserAct.class);
