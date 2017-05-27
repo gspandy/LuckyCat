@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jesse.mapper.app.user.SmsLogInfoMapper">
+<mapper namespace="com.jesse.mapper.SmsLogInfoMapper">
 	<!--mybatis ehcache缓存配置 -->
 	<!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 <cache type="org.mybatis.caches.ehcache.LoggingEhcache" 
 		/> -->
@@ -17,7 +17,7 @@
 		ts
 	</sql>
 
-	<select id="findSmsLogInfoPage" resultType="com.jesse.entity.app.user.SmsLogInfoFormMap">
+	<select id="findSmsLogInfoPage" resultType="com.jesse.entity.SmsLogInfoFormMap">
 		select
 		<include refid="selectId" />
 		from sms_log_info
@@ -25,14 +25,11 @@
 		<if test="phone != null and phone != ''">
 			and phone like '%${phone}%'
 		</if>
-		<if test="ip_address != null and ip_address != ''">
-			and ip_address like '%${ip_address}%'
-		</if>
 		<if test="column != null">
           order by ${column} ${sort}
         </if>
 	</select>
-	<select id="findSmsLogInfoList" resultType="com.jesse.entity.app.user.SmsLogInfoFormMap">
+	<select id="findSmsLogInfoList" resultType="com.jesse.entity.SmsLogInfoFormMap">
 		select
 			id,
 			phone

@@ -29,11 +29,16 @@
         <tr>
             <th field="id" checkbox="true" width="200"></th>
             <th field="phone" width="200">手机号码</th>
-            <th field="verify_code" width="100"> 验证码</th>
+            <th field="verify_code" width="100">验证码</th>
             <th field="ip_address" width="300">请求IP地址</th>
-            <th field="ts" width="200"> 时间</th>
+            <th field="ts" formatter="formatterDate"  width="200"> 时间</th>
         </tr>
         </thead>
     </table>
 </div>
 
+<script>
+function formatterDate(data) {
+	return new Date(data).format("yyyy-MM-dd hh:mm:ss");
+} 
+</script>

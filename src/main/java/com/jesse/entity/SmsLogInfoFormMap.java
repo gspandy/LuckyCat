@@ -1,4 +1,4 @@
-package com.jesse.entity.app.user;
+package com.jesse.entity;
 
 import com.jesse.annotation.TableSeg;
 import com.jesse.util.FormMap;

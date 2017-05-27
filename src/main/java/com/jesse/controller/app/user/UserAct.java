@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aliyun.mns.common.ServiceException;
 import com.jesse.controller.app.AppAct;
+import com.jesse.entity.SmsLogInfoFormMap;
 import com.jesse.entity.app.user.AppUserFormMap;
-import com.jesse.entity.app.user.SmsLogInfoFormMap;
+import com.jesse.mapper.SmsLogInfoMapper;
 import com.jesse.mapper.app.user.AppUserMapper;
-import com.jesse.mapper.app.user.SmsLogInfoMapper;
 import com.jesse.util.Common;
 import com.jesse.util.DateUtils;
 import com.jesse.util.HttpUtil;

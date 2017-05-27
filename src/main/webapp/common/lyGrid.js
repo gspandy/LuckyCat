@@ -441,7 +441,7 @@
 				lia_2.onclick = pageBind.bind();
 				lia_2.id = "pagNum_" + (pageNow - 1);
 				lia_2.href = "javascript:void(0);";
-				lia_2.innerHTML = '← prev';
+				lia_2.innerHTML = '← 下一页';
 				ulli_2.appendChild(lia_2);
 			} else {
 				var ulli_2 = document.createElement("li");
@@ -449,7 +449,7 @@
 				divul_2.appendChild(ulli_2);
 				var lia_2 = document.createElement("a");
 				lia_2.href = "javascript:void(0);";
-				lia_2.innerHTML = '← prev';
+				lia_2.innerHTML = '← 上一页';
 				ulli_2.appendChild(lia_2);
 			}
 			var pg = pagesIndex(conf.pagecode, pageNow, totalPages);
@@ -512,7 +512,7 @@
 				divul_2.appendChild(ulli_7);
 				var lia_7 = document.createElement("a");
 				lia_7.href = "javascript:void(0);";
-				lia_7.innerHTML = 'next → ';
+				lia_7.innerHTML = '下一页 → ';
 				ulli_7.appendChild(lia_7);
 			} else {
 				var ulli_7 = document.createElement("li");
@@ -522,7 +522,7 @@
 				lia_7.onclick = pageBind.bind();
 				lia_7.href = "javascript:void(0);";
 				lia_7.id = "pagNum_" + (pageNow + 1);
-				lia_7.innerHTML = 'next → ';
+				lia_7.innerHTML = '下一页 → ';
 				ulli_7.appendChild(lia_7);
 			}
 			;
