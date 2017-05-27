@@ -18,6 +18,19 @@ $(function() {
 			colkey : "ip_address",
 			name : "IP地址"
 		}, {
+			colkey : "status",
+			name : "发送状态",
+			renderData : function(rowindex, data, rowdata, column) {
+				if(data=="0"){
+					return "失败";
+				}else if(data=="1"){
+					return "成功";
+				}
+			}
+		}, {
+			colkey : "error_msg",
+			name : "错误信息"
+		}, {
 			colkey : "ts",
 			name : "操作时间",
 			isSort:true,

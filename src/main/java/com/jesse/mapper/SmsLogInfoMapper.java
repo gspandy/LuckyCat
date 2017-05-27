@@ -1,6 +1,6 @@
-package com.jesse.mapper.app.user;
+package com.jesse.mapper;
 
-import com.jesse.entity.app.user.SmsLogInfoFormMap;
+import com.jesse.entity.SmsLogInfoFormMap;
 import com.jesse.mapper.base.BaseMapper;
 
 import java.util.List;

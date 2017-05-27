@@ -1,8 +1,8 @@
 package com.jesse.controller.system;
 
 import com.jesse.controller.index.BaseController;
-import com.jesse.entity.app.user.SmsLogInfoFormMap;
-import com.jesse.mapper.app.user.SmsLogInfoMapper;
+import com.jesse.entity.SmsLogInfoFormMap;
+import com.jesse.mapper.SmsLogInfoMapper;
 import com.jesse.plugin.PageView;
 import com.jesse.util.Common;
 
