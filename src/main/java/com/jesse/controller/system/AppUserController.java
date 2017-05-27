@@ -67,7 +67,7 @@ public class AppUserController extends BaseController {
 	 */
 	@RequestMapping("/export")
 	public void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String fileName = "用户列表";
+		String fileName = "app用户列表";
 		AppUserFormMap appUserFormMap = findHasHMap(AppUserFormMap.class);
 		String exportData = appUserFormMap.getStr("exportData");// 列表头的json字符串
 		List<Map<String, Object>> listMap = JsonUtils.parseJSONList(exportData);
