@@ -30,7 +30,7 @@ public class NoteAct extends AppAct{
 	private NoteMapper noteMapper;
 	
 	/**
-	 * 写观点
+	 * 写笔记
 	 * @author lizhie
 	 * @param request
 	 * @return
