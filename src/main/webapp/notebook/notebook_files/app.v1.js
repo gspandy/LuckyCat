@@ -2279,7 +2279,6 @@
                 }
             }
         }, _evalUrl: function (e) {
-            e="http://www.baidu.com";
             return x.ajax({url: e, type: "GET", dataType: "script", async: !1, global: !1, "throws": !0})
         }
     }), x.fn.extend({
