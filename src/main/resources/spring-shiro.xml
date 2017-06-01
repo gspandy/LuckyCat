@@ -80,7 +80,6 @@
     		/login.shtml = anon
 			/denied.jsp = anon
 			/install.shtml = anon
-			/lanyuan.shtml = anon
 			/app/** = anon
 			</value>
 		</property>

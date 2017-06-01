@@ -83,15 +83,11 @@
 			<version>${shiro.version}</version>
 		</dependency>
 		<!-- mybatis -->
-		<dependency> <groupId>org.mybatis</groupId> <artifactId>mybatis</artifactId> 
-			<version>${mybatis.version}</version> </dependency>
-		<!-- <dependency>
-			<groupId>com.lanyuan</groupId>
+		<dependency>
+			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
-			<version>3.2.8</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/mybatis-3.2.8.jar</systemPath>
-		</dependency> -->
+			<version>${mybatis.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
