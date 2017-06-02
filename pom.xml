@@ -253,6 +253,11 @@
 			<artifactId>aliyun-sdk-mns</artifactId>
 			<version>1.1.8</version>
 		</dependency>
+		<dependency>
+			<groupId>com.kendoui</groupId>
+			<artifactId>kendo-taglib</artifactId>
+			<version>2017.1.223</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>cat</finalName>

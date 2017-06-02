@@ -14,7 +14,7 @@
 		ip_address,
 		error_msg,
 		status,
-		ts
+		DATE_FORMAT(ts,'%Y-%m-%d %H:%m:%i') as ts
 	</sql>
 
 	<select id="findSmsLogInfoPage" resultType="com.jesse.entity.SmsLogInfoFormMap">
