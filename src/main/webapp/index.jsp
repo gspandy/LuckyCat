@@ -10,7 +10,7 @@
 	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="msapplication-tap-highlight" content="no"/>
-	<title>考拉微店ERP管理系统</title>
+	<title>财猫管理系统</title>
 
 	<link rel="stylesheet" href="${ctx}/bower_components/uikit/css/uikit.almost-flat.min.css" media="all">
 	<!-- flag icons -->
