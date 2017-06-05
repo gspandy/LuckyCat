@@ -10,25 +10,11 @@
 	<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="msapplication-tap-highlight" content="no"/>
-
-	<%
-		StringBuffer url = request.getRequestURL();
-		String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append("/").toString();
-		String showImgUrl = "http://erp.kocla.com/assets/img/favicon-koala";
-		if (tempContextUrl.indexOf("monster") > 0){
-			showImgUrl = "http://erp.kocla.com/assets/img/favicon-monster";//使用同一图标
-		}
-	%>
-	<c:set var="contextUrl" value="<%=tempContextUrl%>" />
-	<link rel="icon" type="image/png" href="<%=showImgUrl%>-16x16.png" sizes="16x16">
-	<link rel="icon" type="image/png" href="<%=showImgUrl%>-32x32.png" sizes="32x32">
-
 	<title>考拉微店ERP管理系统</title>
-	<link rel="stylesheet" href="${ctx}/bower_components/uikit/css/uikit.almost-flat.min.css" media="all">
 
+	<link rel="stylesheet" href="${ctx}/bower_components/uikit/css/uikit.almost-flat.min.css" media="all">
 	<!-- flag icons -->
 	<link rel="stylesheet" href="${ctx}/assets/icons/flags/flags.min.css" media="all">
-
 	<!-- altair admin -->
 	<link rel="stylesheet" href="${ctx}/assets/css/main.min.css" media="all">
 	<!-- matchMedia polyfill for testing media queries in JS -->
@@ -40,6 +26,7 @@
 	<link rel="stylesheet" href="${ctx}/css/easyui/easyui.css" >
 	<link rel="stylesheet" href="${ctx}/css/login/jgmodal.css" />
 	<!--[if lte IE 9]>
+	<script type="text/javascript" src="${ctx}/js/jquery/jquery-1.8.3.js"></script>
 	<script type="text/javascript" src="${ctx}/bower_components/matchMedia/matchMedia.js"></script>
 	<script type="text/javascript" src="${ctx}/bower_components/matchMedia/matchMedia.addListener.js"></script>
 	<![endif]-->
@@ -176,19 +163,19 @@
 		<ul>
 			<c:forEach var="funcMap" items="${list}" varStatus="i">
 				<c:set var="path" value="${funcMap.resUrl}"></c:set>
-				<li title="${funcMap.parentName}" id="${i.index}">
+				<li title="${funcMap.name}" id="${i.index}">
 					<a href="${path}">
                         <span class="menu_icon">
                             <c:if test="${! empty funcMap.icon}">
 								<i class="material-icons"><img src="..${funcMap.icon}"></i>
 							</c:if>
                         </span>
-						<span class="menu_title">${funcMap.parentName}</span>
+						<span class="menu_title">${funcMap.name}</span>
 					</a>
 					<c:if test="${not empty funcMap.children}">
 						<ul>
 							<c:forEach var="funcMenu" items="${funcMap.children}" varStatus="ci">
-								<li id="${ci.index}"><a href="..${funcMenu.resUrl}">${funcMenu.name}</a></li>
+								<li id="${ci.index}"><a href="${ctx}${funcMenu.resUrl}">${funcMenu.name}</a></li>
 							</c:forEach>
 						</ul>
 					</c:if>
