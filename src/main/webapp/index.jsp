@@ -167,7 +167,7 @@
 					<a href="${path}">
                         <span class="menu_icon">
                             <c:if test="${! empty funcMap.icon}">
-								<i class="material-icons"><img src="..${funcMap.icon}"></i>
+								<i class="material-icons"><img src="${ctx}${funcMap.icon}"></i>
 							</c:if>
                         </span>
 						<span class="menu_title">${funcMap.name}</span>
